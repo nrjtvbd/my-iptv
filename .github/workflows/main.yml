@@ -7,26 +7,22 @@ on:
 jobs:
   run_script:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     steps:
-      - name: Checkout Code
-        uses: actions/checkout@v4
-
+      - uses: actions/checkout@v4
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
           python-version: '3.10'
-
-      - name: Run script
+      - name: Run
         run: |
           pip install requests
           python auto_generator.py
-
-      - name: Commit and Push changes
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Save Changes
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
           git add playlist.m3u8
-          git commit -m "🔄 Automatic Token Update: $(date)" || exit 0
-          git push origin main
+          git commit -m "Automatic Update" || exit 0
+          git push
