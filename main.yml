@@ -1,27 +1,37 @@
-name: 🔄 100% Auto Token Generator
+name: 🔁 Auto Token Update
 
 on:
   schedule:
-    - cron: "*/30 * * * *" # প্রতি ৩০ মিনিট পর পর চেক করবে
-  workflow_dispatch:
+    - cron: "*/30 * * * *"  # প্রতি ৩০ মিনিট পর পর রান হবে
+  workflow_dispatch:       # ম্যানুয়ালি রান করার বোতাম
+
+permissions:
+  contents: write
 
 jobs:
-  update-token:
+  build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - name: Setup Python
+      - name: 📦 Checkout code
+        uses: actions/checkout@v4
+
+      - name: 🐍 Setup Python
         uses: actions/setup-python@v5
         with:
-          python-version: '3.10'
-      - name: Install Tools
+          python-version: "3.10"
+
+      - name: 📥 Install requests
         run: pip install requests
-      - name: Execute Script
-        run: python auto_generator.py
-      - name: Save to Repo
+
+      - name: ▶️ Run Generator
+        run: python update.py
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: 💾 Commit and Push
         run: |
-          git config --global user.name "Auto-Bot"
-          git config --global user.email "bot@github.com"
+          git config user.name "github-actions"
+          git config user.email "actions@github.com"
           git add playlist.m3u8
-          git commit -m "Updated Token at $(date)" || exit 0
+          git commit -m "🔄 Automatic Link Update" || exit 0
           git push
