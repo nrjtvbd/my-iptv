@@ -75,8 +75,8 @@ channel_list = [
     {"name": "HUM TV", "id": "89", "path": "/HUM.MASALA.TV/index.m3u8"},
     {"name": "HITZ MUSIC", "id": "70", "path": "/HITZ.MUSIC/index.m3u8"},
     {"name": "LOTUS TV", "id": "91", "path": "/Lotus.TV.HD/index.m3u8"},
-    {"name": "ZING", "id": "100", "path": "/ZING.MUSIC/index.m3u8"},
-    {"name": "ZOOM", "id": "100", "path": "/ZOOM.MUSIC/index.m3u8"},
+    {"name": "ZING", "id": "53", "path": "/ZING.MUSIC/index.m3u8"},
+    {"name": "ZOOM", "id": "42", "path": "/ZOOM.MUSIC/index.m3u8"},
 
     # --- Documentary & Lifestyle ---
     {"name": "NATGEO HD", "id": "25", "path": "/NATGEO.HD/index.m3u8"},
