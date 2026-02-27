@@ -1,5 +1,25 @@
 #EXTM3U
-#EXTINF:-1 tvg-id="tsports" tvg-logo="https://raw.githubusercontent.com/nrjtvbd/my-iptv/main/logo.png", T-SPORTS HD
-http://103.144.89.251:8082/T-SPORTS-HD/index.m3u8?token=6fe1f7f18e01321d3e33f6fa39fa52defe17c73f-b80c034654572ed939edc04225c7c115-1772230682-1772219882&remote=no_check_ip
-#EXTINF:-1 tvg-id="gtv" tvg-logo="", GTV
-http://103.144.89.251:8082/stream-56/index.m3u8?token=6fe1f7f18e01321d3e33f6fa39fa52defe17c73f-b80c034654572ed939edc04225c7c115-1772230682-1772219882&remote=no_check_ip
+#EXTINF:-1 tvg-logo="https://raw.githubusercontent.com/nrjtvbd/my-iptv/main/logos/tsports.png", T-SPORTS HD
+http://103.144.89.251:8082/T-SPORTS-HD/index.m3u8?token=bd10ac311d4bb9e074d216ef4697ecf2187ab97e-bee48014f04ec40f489bbed66066be14-1772231126-1772220326&remote=no_check_ip
+#EXTINF:-1 tvg-logo="", GTV (Gazi TV)
+http://103.144.89.251:8082/stream-56/index.m3u8?token=bd10ac311d4bb9e074d216ef4697ecf2187ab97e-bee48014f04ec40f489bbed66066be14-1772231126-1772220326&remote=no_check_ip
+#EXTINF:-1 tvg-logo="", SONY SPORTS 1 HD
+http://103.144.89.251:8082/SONY-SPORTS-1-HD/index.m3u8?token=bd10ac311d4bb9e074d216ef4697ecf2187ab97e-bee48014f04ec40f489bbed66066be14-1772231126-1772220326&remote=no_check_ip
+#EXTINF:-1 tvg-logo="", SONY SPORTS 2 HD
+http://103.144.89.251:8082/SONY-SPORTS-2-HD/index.m3u8?token=bd10ac311d4bb9e074d216ef4697ecf2187ab97e-bee48014f04ec40f489bbed66066be14-1772231126-1772220326&remote=no_check_ip
+#EXTINF:-1 tvg-logo="", SONY SPORTS 3 HD
+http://103.144.89.251:8082/SONY-SPORTS-3-HD/index.m3u8?token=bd10ac311d4bb9e074d216ef4697ecf2187ab97e-bee48014f04ec40f489bbed66066be14-1772231126-1772220326&remote=no_check_ip
+#EXTINF:-1 tvg-logo="", SONY SPORTS 5 HD
+http://103.144.89.251:8082/SONY-TEN-5-HD/index.m3u8?token=bd10ac311d4bb9e074d216ef4697ecf2187ab97e-bee48014f04ec40f489bbed66066be14-1772231126-1772220326&remote=no_check_ip
+#EXTINF:-1 tvg-logo="", STAR SPORTS 1 HD
+http://103.144.89.251:8082/STAR-SPORTS-1-HD/index.m3u8?token=bd10ac311d4bb9e074d216ef4697ecf2187ab97e-bee48014f04ec40f489bbed66066be14-1772231126-1772220326&remote=no_check_ip
+#EXTINF:-1 tvg-logo="", STAR SPORTS 2 HD
+http://103.144.89.251:8082/STAR-SPORTS-2-HD/index.m3u8?token=bd10ac311d4bb9e074d216ef4697ecf2187ab97e-bee48014f04ec40f489bbed66066be14-1772231126-1772220326&remote=no_check_ip
+#EXTINF:-1 tvg-logo="", STAR SPORTS SELECT 1
+http://103.144.89.251:8082/STAR-SPORTS-SELECT-1-HD/index.m3u8?token=bd10ac311d4bb9e074d216ef4697ecf2187ab97e-bee48014f04ec40f489bbed66066be14-1772231126-1772220326&remote=no_check_ip
+#EXTINF:-1 tvg-logo="", SOMOY TV
+http://103.144.89.251:8082/stream-79/index.m3u8?token=bd10ac311d4bb9e074d216ef4697ecf2187ab97e-bee48014f04ec40f489bbed66066be14-1772231126-1772220326&remote=no_check_ip
+#EXTINF:-1 tvg-logo="", EKATTOR TV
+http://103.144.89.251:8082/stream-24/index.m3u8?token=bd10ac311d4bb9e074d216ef4697ecf2187ab97e-bee48014f04ec40f489bbed66066be14-1772231126-1772220326&remote=no_check_ip
+#EXTINF:-1 tvg-logo="", NTV
+http://103.144.89.251:8082/stream-54/index.m3u8?token=bd10ac311d4bb9e074d216ef4697ecf2187ab97e-bee48014f04ec40f489bbed66066be14-1772231126-1772220326&remote=no_check_ip
