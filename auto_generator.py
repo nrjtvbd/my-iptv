@@ -1,21 +1,32 @@
 import requests
 import re
 
-def get_link():
-    headers = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"}
+def get_token():
+    # বিডিক্স সার্ভারের প্লেয়ার লিঙ্ক
+    url = "http://tv.bdixbd.org/player.php?stream=1"
+    headers = {
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) Chrome/120.0.0.0 Safari/537.36',
+        'Referer': 'http://tv.bdixbd.org/'
+    }
     try:
-        # RoarZone সোর্স যা সব নেটওয়ার্কে ভালো কাজ করে
-        r = requests.get("https://roarzone.info/tv/tsports", headers=headers, timeout=15)
-        token = re.search(r'token=([a-zA-Z0-9\-_.]+)', r.text).group(1)
-        return f"https://edge2.roarzone.info:444/roarzone/edge2/tsports/index.m3u8?token={token}"
-    except Exception as e:
-        print(f"Error fetching token: {e}")
+        response = requests.get(url, headers=headers, timeout=10)
+        # HTML থেকে টোকেনটি খুঁজে বের করা
+        match = re.search(r'token=([a-zA-Z0-9\-_.]+)', response.text)
+        return match.group(1) if match else None
+    except:
         return None
 
-final_link = get_link()
-if final_link:
+token = get_token()
+
+if token:
+    m3u8_content = f"""#EXTM3U
+#EXTINF:-1 tvg-id="tsports" tvg-logo="https://raw.githubusercontent.com/nrjtvbd/my-iptv/main/logo.png", T-SPORTS HD
+http://103.144.89.251:8082/T-SPORTS-HD/index.m3u8?token={token}&remote=no_check_ip
+#EXTINF:-1 tvg-id="gtv" tvg-logo="", GTV
+http://103.144.89.251:8082/stream-56/index.m3u8?token={token}&remote=no_check_ip
+"""
     with open("playlist.m3u8", "w") as f:
-        f.write(f"#EXTM3U\n#EXTINF:-1,T-Sports HD\n{final_link}")
-    print("✅ Playlist updated with new token!")
+        f.write(m3u8_content)
+    print("Token updated successfully!")
 else:
-    print("❌ Failed to get token.")
+    print("Failed to get token.")
