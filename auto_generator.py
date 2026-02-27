@@ -15,18 +15,18 @@ def get_token(stream_id):
     except:
         return None
 
-# আপনার দেওয়া ডিটেইলস অনুযায়ী index.m3u8 পাথ এবং সঠিক ফোল্ডার নেম
+# স্টার স্পোর্টসের আইডি এবং পাথগুলো নিখুঁতভাবে সংশোধন করা হয়েছে
 channel_list = [
     {"name": "T-SPORTS HD", "id": "1", "path": "/T-SPORTS-HD/index.m3u8"},
     {"name": "SONY SPORTS 1 HD", "id": "74", "path": "/SONY.SPORTS.1HD/index.m3u8"},
     {"name": "SONY SPORTS 2 HD", "id": "29", "path": "/SONY.SPORTS2.HD/index.m3u8"},
     {"name": "SONY SPORTS 3 HD", "id": "30", "path": "/SONY.SPORTS.3/index.m3u8"},
     {"name": "SONY SPORTS 5 HD", "id": "101", "path": "/SONY-SPORTS.5HD/index.m3u8"},
-    {"name": "STAR SPORTS 1 HD", "id": "3", "path": "/STAR.SPORTS1.HD/index.m3u8"},
-    {"name": "STAR SPORTS 2 HD", "id": "31", "path": "/STAR.SPORTS2.HD/index.m3u8"},
-    {"name": "STAR SPORTS 3", "id": "60", "path": "/STAR-SPORTS.3/index.m3u8"},
-    {"name": "STAR SPORTS SELECT 1", "id": "37", "path": "/STAR.SPORTS-SEL1.HD/index.m3u8"},
-    {"name": "STAR SPORTS SELECT 2", "id": "38", "path": "/STAR.SPORTS.SEL.2.HD/index.m3u8"},
+    {"name": "STAR SPORTS 1 HD", "id": "99", "path": "/STAR.SPORTS1.HD/index.m3u8"},
+    {"name": "STAR SPORTS 2 HD", "id": "43", "path": "/STAR.SPORTS2.HD/index.m3u8"},
+    {"name": "STAR SPORTS 3", "id": "57", "path": "/STAR-SPORTS.3/index.m3u8"},
+    {"name": "STAR SPORTS SELECT 1", "id": "39", "path": "/STAR.SPORTS-SEL1.HD/index.m3u8"},
+    {"name": "STAR SPORTS SELECT 2", "id": "33", "path": "/STAR.SPORTS.SEL.2.HD/index.m3u8"},
     {"name": "A SPORTS HD", "id": "88", "path": "/A.SPORTS.HD/index.m3u8"},
     {"name": "PTV SPORTS HD", "id": "92", "path": "/PTV-SPORTS-HD/index.m3u8"},
     {"name": "GTV (GAZI TV)", "id": "56", "path": "/stream-56/index.m3u8"},
@@ -36,12 +36,11 @@ channel_list = [
 
 m3u_content = "#EXTM3U\n"
 
-print("🔄 Generating Master Playlist with index.m3u8...")
+print("🔄 Generating Master Playlist with corrected Star Sports IDs...")
 
 for ch in channel_list:
     token = get_token(ch["id"])
     if token:
-        # Master Playlist URL format
         final_url = f"http://103.144.89.251:8082{ch['path']}?token={token}&remote=no_check_ip"
         m3u_content += f'#EXTINF:-1, {ch["name"]}\n{final_url}\n'
         print(f"✅ {ch['name']} - OK")
@@ -53,4 +52,4 @@ for ch in channel_list:
 with open("playlist.m3u8", "w") as f:
     f.write(m3u_content)
 
-print("\n🚀 Success! All channels updated to use index.m3u8.")
+print("\n🚀 Mission Accomplished! Try Star Sports now.")
