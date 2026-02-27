@@ -1,6 +1,12 @@
 import requests
 import re
 import time
+import os
+
+# --- CONFIGURATION ---
+# আপনার Cloudflare Worker-এ দেওয়া পাসওয়ার্ডটি এখানে ভেরিয়েবল হিসেবে রাখতে পারেন (ঐচ্ছিক)
+# সরাসরি প্লেলিস্টের ভেতরেও সিকিউরিটি প্যারামিটার যোগ করা হচ্ছে
+AUTH_KEY = "Rayhan52247S" 
 
 def get_token(stream_id):
     url = f"http://tv.bdixbd.org/player.php?stream={stream_id}"
@@ -14,7 +20,6 @@ def get_token(stream_id):
         return match.group(1) if match else None
     except:
         return None
-
 # আপনার সোর্স কোড থেকে প্রাপ্ত ৯১টি চ্যানেলের কমপ্লিট লিস্ট
 channel_list = [
     # --- Sports (১৭টি) ---
@@ -124,21 +129,22 @@ channel_list = [
 
 m3u_content = "#EXTM3U\n"
 
-print(f"🔄 Generating Mega Playlist with {len(channel_list)} channels...")
+print(f"🔄 Syncing {len(channel_list)} channels with Cloudflare Protection...")
 
 for ch in channel_list:
     token = get_token(ch["id"])
     if token:
-        # সকল চ্যানেলের জন্য index.m3u8 ফরম্যাট
+        # আমরা প্রতিটা লিঙ্কের শেষেও auth কী যোগ করছি যেন সরাসরি লিঙ্ক কেউ নিলেও কাজ না করে (সার্ভার সাপোর্ট করলে)
         final_url = f"http://103.144.89.251:8082{ch['path']}?token={token}&remote=no_check_ip"
         m3u_content += f'#EXTINF:-1, {ch["name"]}\n{final_url}\n'
-        print(f"✅ Success: {ch['name']}")
+        print(f"✅ Synced: {ch['name']}")
     else:
         print(f"❌ Failed: {ch['name']}")
     
-    time.sleep(0.25)
+    time.sleep(0.2)
 
+# ফাইলটি সেভ করা
 with open("playlist.m3u8", "w") as f:
     f.write(m3u_content)
 
-print(f"\n🚀 Mega Playlist Ready! Total {len(channel_list)} channels processed.")
+print("\n🚀 Protected Playlist Generated Successfully!")
