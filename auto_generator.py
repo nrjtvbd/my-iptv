@@ -2,15 +2,14 @@ import requests
 import re
 
 def get_token():
-    # বিডিক্স সার্ভারের প্লেয়ার লিঙ্ক
+    # BDIX সার্ভারের প্লেয়ার লিঙ্ক যেখান থেকে টোকেন স্ক্র্যাপ করা হবে
     url = "http://tv.bdixbd.org/player.php?stream=1"
     headers = {
         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) Chrome/120.0.0.0 Safari/537.36',
         'Referer': 'http://tv.bdixbd.org/'
     }
     try:
-        response = requests.get(url, headers=headers, timeout=10)
-        # HTML থেকে টোকেনটি খুঁজে বের করা
+        response = requests.get(url, headers=headers, timeout=15)
         match = re.search(r'token=([a-zA-Z0-9\-_.]+)', response.text)
         return match.group(1) if match else None
     except:
@@ -19,14 +18,29 @@ def get_token():
 token = get_token()
 
 if token:
-    m3u8_content = f"""#EXTM3U
-#EXTINF:-1 tvg-id="tsports" tvg-logo="https://raw.githubusercontent.com/nrjtvbd/my-iptv/main/logo.png", T-SPORTS HD
-http://103.144.89.251:8082/T-SPORTS-HD/index.m3u8?token={token}&remote=no_check_ip
-#EXTINF:-1 tvg-id="gtv" tvg-logo="", GTV
-http://103.144.89.251:8082/stream-56/index.m3u8?token={token}&remote=no_check_ip
-"""
+    # চ্যানেল লিস্ট এবং তাদের পাথ
+    channels = [
+        {"name": "T-SPORTS HD", "path": "/T-SPORTS-HD/index.m3u8", "logo": "https://raw.githubusercontent.com/nrjtvbd/my-iptv/main/logos/tsports.png"},
+        {"name": "GTV (Gazi TV)", "path": "/stream-56/index.m3u8", "logo": ""},
+        {"name": "SONY SPORTS 1 HD", "path": "/SONY-SPORTS-1-HD/index.m3u8", "logo": ""},
+        {"name": "SONY SPORTS 2 HD", "path": "/SONY-SPORTS-2-HD/index.m3u8", "logo": ""},
+        {"name": "SONY SPORTS 3 HD", "path": "/SONY-SPORTS-3-HD/index.m3u8", "logo": ""},
+        {"name": "SONY SPORTS 5 HD", "path": "/SONY-TEN-5-HD/index.m3u8", "logo": ""},
+        {"name": "STAR SPORTS 1 HD", "path": "/STAR-SPORTS-1-HD/index.m3u8", "logo": ""},
+        {"name": "STAR SPORTS 2 HD", "path": "/STAR-SPORTS-2-HD/index.m3u8", "logo": ""},
+        {"name": "STAR SPORTS SELECT 1", "path": "/STAR-SPORTS-SELECT-1-HD/index.m3u8", "logo": ""},
+        {"name": "SOMOY TV", "path": "/stream-79/index.m3u8", "logo": ""},
+        {"name": "EKATTOR TV", "path": "/stream-24/index.m3u8", "logo": ""},
+        {"name": "NTV", "path": "/stream-54/index.m3u8", "logo": ""},
+    ]
+
+    m3u_content = "#EXTM3U\n"
+    for ch in channels:
+        m3u_content += f'#EXTINF:-1 tvg-logo="{ch["logo"]}", {ch["name"]}\n'
+        m3u_content += f'http://103.144.89.251:8082{ch["path"]}?token={token}&remote=no_check_ip\n'
+
     with open("playlist.m3u8", "w") as f:
-        f.write(m3u8_content)
-    print("Token updated successfully!")
+        f.write(m3u_content)
+    print(f"Successfully updated {len(channels)} channels with new token!")
 else:
-    print("Failed to get token.")
+    print("Failed to fetch fresh token.")
