@@ -10,12 +10,13 @@ def get_token(stream_id):
     }
     try:
         response = requests.get(url, headers=headers, timeout=15)
+        # স্ক্রিপ্ট ট্যাগ বা প্লেয়ার সোর্স থেকে টোকেন খোঁজা
         match = re.search(r'token=([a-zA-Z0-9\-_.]+)', response.text)
         return match.group(1) if match else None
     except:
         return None
 
-# স্টার স্পোর্টসের আইডি এবং পাথগুলো নিখুঁতভাবে সংশোধন করা হয়েছে
+# আপনার দেওয়া ডিটেইলস থেকে নিখুঁত পাথ এবং আইডি ম্যাপিং
 channel_list = [
     {"name": "T-SPORTS HD", "id": "1", "path": "/T-SPORTS-HD/index.m3u8"},
     {"name": "SONY SPORTS 1 HD", "id": "74", "path": "/SONY.SPORTS.1HD/index.m3u8"},
@@ -36,20 +37,21 @@ channel_list = [
 
 m3u_content = "#EXTM3U\n"
 
-print("🔄 Generating Master Playlist with corrected Star Sports IDs...")
+print("🔄 Generating Playlist with the latest Star Sports folder structure...")
 
 for ch in channel_list:
     token = get_token(ch["id"])
     if token:
+        # Master URL format
         final_url = f"http://103.144.89.251:8082{ch['path']}?token={token}&remote=no_check_ip"
         m3u_content += f'#EXTINF:-1, {ch["name"]}\n{final_url}\n'
-        print(f"✅ {ch['name']} - OK")
+        print(f"✅ {ch['name']} - Token Synced")
     else:
         print(f"❌ {ch['name']} - Token Failed")
     
-    time.sleep(0.3) 
+    time.sleep(0.5) 
 
 with open("playlist.m3u8", "w") as f:
     f.write(m3u_content)
 
-print("\n🚀 Mission Accomplished! Try Star Sports now.")
+print("\n🚀 Done! All Star Sports channels are now mapped correctly.")
