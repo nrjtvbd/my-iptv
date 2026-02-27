@@ -1,5 +1,5 @@
 #EXTM3U
 #EXTINF:-1 tvg-id="tsports" tvg-logo="https://raw.githubusercontent.com/nrjtvbd/my-iptv/main/logo.png", T-SPORTS HD
-http://103.144.89.251:8082/T-SPORTS-HD/index.m3u8?token=d5561809c220ad932146736655c0ec09ad366f34-015aa9f8e41c1556a2b90a3ef6638d2f-1772230607-1772219807&remote=no_check_ip
+http://103.144.89.251:8082/T-SPORTS-HD/index.m3u8?token=8d19eb73dee9df2a54401db6de788902106f4a7e-e4a187b2a9cd01ae064f2a1c3d66ea0b-1772230650-1772219850&remote=no_check_ip
 #EXTINF:-1 tvg-id="gtv" tvg-logo="", GTV
-http://103.144.89.251:8082/stream-56/index.m3u8?token=d5561809c220ad932146736655c0ec09ad366f34-015aa9f8e41c1556a2b90a3ef6638d2f-1772230607-1772219807&remote=no_check_ip
+http://103.144.89.251:8082/stream-56/index.m3u8?token=8d19eb73dee9df2a54401db6de788902106f4a7e-e4a187b2a9cd01ae064f2a1c3d66ea0b-1772230650-1772219850&remote=no_check_ip
